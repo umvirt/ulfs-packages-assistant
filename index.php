@@ -71,12 +71,13 @@ echo "<h2>Assistant installation</h2>";
 echo "<ol>";
 echo "<li>According to Chapter 24 of ULFS book add XORG_CONFIG & XORG_PREFIX environment variables</li>";
 echo "<li>In file /etc/profile add followed strings:<br>
-<tt>export ASSISTANT_URL=https://umvirt.com/linux/assistant/<br>
-export PACKAGES_URL=https://umvirt.com/linux/packages/</tt>
+<tt>export UMVIRT_ASSISTANT_URL=".$config['assistant_url']."<br>
+export UMVIRT_PACKAGES_URL=".$config['packages_url']."<br>
+export UMVIRT_RELEASE=0.1</tt>
 </li>";
 echo "<li>Relogin</li>";
 echo "<li>Download chimp script:<br>
-<tt>wget --no-check-cerificate https://umvirt.com/linux/assistant/chimp -O /bin/chimp</tt>
+<tt>wget --no-check-cerificate ".$config['assistant_url']."chimp -O /bin/chimp</tt>
 </li>";
 echo "<li>Make it executable:<br>
 <tt>chmod +x /bin/chimp</tt></li>";
