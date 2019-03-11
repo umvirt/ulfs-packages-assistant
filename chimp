@@ -1,0 +1,87 @@
+#!/bin/bash
+#=====================
+# UmVirt LFS assistant
+#=====================
+
+FATAL_ERROR=0
+
+if [ ! "$UMVIRT_ASSISTANT_URL" ]
+then
+   echo "Error: Environment variable UMVIRT_ASSISTANT_URL undefined!"
+   FATAL_ERROR=1
+fi
+if [ ! "$UMVIRT_PACKAGES_URL" ]
+then
+   echo "Error: Environment variable UMVIRT_PACKAGES_URL is undefined!"
+   FATAL_ERROR=1
+fi
+if [ ! "$UMVIRT_RELEASE" ]
+then
+   echo "Error: Environment variable UMVIRT_RELEASE is undefined!"
+   FATAL_ERROR=1
+fi
+
+if [ ! "$XORG_PREFIX" ]
+then
+   echo "Error: Environment variable XORG_PREFIX is undefined!"
+   FATAL_ERROR=1
+fi
+
+if [ ! "$XORG_CONFIG" ]
+then
+   echo "Error: Environment variable XORG_CONFIG is undefined!"
+   FATAL_ERROR=1
+fi
+
+
+if [ $FATAL_ERROR -eq 1 ]
+then
+    exit
+fi
+
+#if no arguments
+if (( $# == 0 ))
+then
+    #display welcome message
+    echo "CHIMP IS READY TO ACCEPT COMMANDS"
+    exit
+fi
+
+#Install command
+if [ "$1" == "install" ];
+then
+    echo "Package installer"
+    #if second argument undefined
+    if [ $# -lt 2 ];
+    then
+	#exit
+	echo "Error: Package name is not defined! Package installation aborted!"
+	exit
+    fi
+    wget --no-check-certificate $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/install -O - | bash
+    exit
+fi
+
+
+#Install command
+if [ "$1" == "install_script" ];
+then
+    echo "Package installer script"
+    #if second argument undefined
+    if [ $# -lt 2 ];
+    then
+        #exit
+        echo "Error: Package name is not defined! Package installation aborted!"
+        exit
+    fi
+    wget --no-check-certificate $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/install -O - 
+    exit
+fi
+
+#Other command
+COMMAND="wget -q  --no-check-certificate $UMVIRT_ASSISTANT_URL/$UMVIRT_RELEASE/$1/view -O - | bash"
+echo "Running command:"
+echo $COMMAND
+echo ""
+eval $COMMAND
+

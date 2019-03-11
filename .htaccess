@@ -1,0 +1,16 @@
+RewriteEngine On
+RewriteBase /
+
+
+RewriteRule ^([0-9.]+)(/?)$ /linux/assistant/index.php?release=$1
+RewriteRule ^xml(/?)$ /linux/assistant/index.php?format=xml
+RewriteRule ^json(/?)$ /linux/assistant/index.php?format=json
+RewriteRule ^xml/([0-9.]+)(/?)$ /linux/assistant/index.php?release=$1&format=xml
+RewriteRule ^json/([0-9.]+)(/?)$ /linux/assistant/index.php?release=$1&format=json
+RewriteRule ^([0-9.]+)/([a-zA-z0-9.-]+)(/?)$ /linux/assistant/command.php?release=$1&command=$2
+RewriteRule ^([0-9.]+)/([a-zA-z0-9.-]+)/view(/?)$ /linux/assistant/commanddump.php?release=$1&command=$2
+RewriteRule ^install/([0-9.]+)/([a-zA-z0-9.-]+)(/?)$ /linux/assistant/packageinstall.php?release=$1&package=$2
+RewriteRule ^xml/([0-9.]+)/([a-zA-z0-9.-]+)(/?)$ /linux/packages/packageexport.php?release=$1&package=$2&format=xml
+RewriteRule ^json/([0-9.]+)/([a-zA-z0-9.-]+)(/?)$ /linux/packages/packageexport.php?release=$1&package=$2&format=json
+
+RewriteRule ^([0-9a-z.]+).html$ /linux/packages/html.php?page=$1
