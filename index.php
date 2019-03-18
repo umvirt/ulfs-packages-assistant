@@ -50,7 +50,8 @@ exit;
 
 if($format=="xml"){
 $dom = new DOMDocument('1.0', 'utf-8');
-$root = $dom->createElement('ulfspackages');
+$dom->formatOutput=true;
+$root = $dom->createElement('ulfscommands');
 $releases_element = $dom->createElement('releases');
 $result=array();
 ob_end_clean();
@@ -77,7 +78,7 @@ export UMVIRT_RELEASE=0.1</tt>
 </li>";
 echo "<li>Relogin</li>";
 echo "<li>Download chimp script:<br>
-<tt>wget --no-check-cerificate ".$config['assistant_url']."chimp -O /bin/chimp</tt>
+<tt>wget --no-check-certificate ".$config['assistant_url']."chimp -O /bin/chimp</tt>
 </li>";
 echo "<li>Make it executable:<br>
 <tt>chmod +x /bin/chimp</tt></li>";
@@ -150,7 +151,7 @@ $result=array();
 $result['release']=$release;
 ob_end_clean();
 foreach ($x as $k=>$v){
-$result['packages'][]=$v['code'];
+$result['commands'][]=$v['name'];
 }
 header("Content-type: text/plain");
 echo json_encode($result);
@@ -159,14 +160,15 @@ exit;
 
 if($format=="xml"){
 $dom = new DOMDocument('1.0', 'utf-8');
+$dom->formatOutput=true;
 $root = $dom->createElement('packages');
 $release_element = $dom->createElement('release',$release);
 $root->appendChild($release_element);
 $result=array();
 ob_end_clean();
-$packages_element = $dom->createElement('packages');
+$packages_element = $dom->createElement('commands');
 foreach ($x as $k=>$v){
-$package_element = $dom->createElement('package', $v['code']);
+$package_element = $dom->createElement('command', $v['name']);
 $packages_element->appendChild($package_element);
 }
 $root->appendChild($packages_element);
