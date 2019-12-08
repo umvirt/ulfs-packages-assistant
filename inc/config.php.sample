@@ -11,9 +11,11 @@ $config['filespath']="/mnt/storage/data";
 
 //URLs
 //HTTP & IP
+$config['assistant_url']="http://".@$_SERVER['SERVER_ADDR']."/linux/assistant/";
 $config['packages_url']="http://".@$_SERVER['SERVER_ADDR']."/linux/packages/";
 $config['downloads_url']="http://".@$_SERVER['SERVER_ADDR']."/linux/downloads/";
 //HTTPS & DNS
+//$config['assistant_url']="https://umvirt.com/linux/assistant/";
 //$config['packages_url']="https://umvirt.com/linux/packages/";
 //$config['downloads_url']="https://umvirt.com/linux/downloads/";
 
