@@ -1,9 +1,19 @@
 <?php
+//database parameters
 $db_config['database']='ulfs';
 $db_config['user']='ulfs';
 $db_config['password']='secret';
 $db_config['server']='127.0.0.1';
+//local install root path
+$config['localpath']="/mnt/umvirt";
+//files repository root
+$config['filespath']="/mnt/storage/data";
 
-$config['packages_url']="https://umvirt.com/linux/packages/";
-$config['assistant_url']="https://umvirt.com/linux/assistant/";
+//URLs
+//HTTP & IP
+$config['packages_url']="http://".$_SERVER['SERVER_ADDR']."/linux/packages/";
+$config['downloads_url']="http://".$_SERVER['SERVER_ADDR']."/linux/downloads/";
+//HTTPS & DNS
+//$config['packages_url']="https://umvirt.com/linux/packages/";
+//$config['downloads_url']="https://umvirt.com/linux/downloads/";
 
