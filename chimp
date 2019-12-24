@@ -78,6 +78,24 @@ then
     exit
 fi
 
+#List installed packages
+if [ "$1" == "installed_packages" ];
+then
+ls -1 /var/cache/ulfs-packages/
+exit
+fi 
+
+#List available packages 
+if [ "$1" == "available_packages" ];
+then 
+wget --no-check-certificate $UMVIRT_PACKAGES_URL/text/$UMVIRT_RELEASE/ -O -
+exit
+fi 
+
+
+
+
+
 #Other command
 COMMAND="wget -q  --no-check-certificate $UMVIRT_ASSISTANT_URL/$UMVIRT_RELEASE/$1/view -O - | bash"
 echo "Running command:"
