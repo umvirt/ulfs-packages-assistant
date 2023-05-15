@@ -3,7 +3,22 @@
 # UmVirt LFS assistant
 #=====================
 
+#default values
 FATAL_ERROR=0
+
+ULFS_PKG_DOCUMENTATION=NO
+ULFS_PKG_STATIC=NO
+
+ULFS_CONFIG_FILE=/etc/ulfs-packages/config
+
+#override values
+if [ -f $ULFS_CONFIG_FILE ]
+then
+echo loading config file
+. $ULFS_CONFIG_FILE
+fi
+
+
 
 if [ ! "$UMVIRT_ASSISTANT_URL" ]
 then
@@ -44,6 +59,30 @@ if (( $# == 0 ))
 then
     #display welcome message
     echo "CHIMP IS READY TO ACCEPT COMMANDS"
+
+	echo CONFIG
+	echo Build documentation
+	echo $ULFS_PKG_DOCUMENTATION
+	echo Build static
+	echo $ULFS_PKG_STATIC
+
+	echo DECISSIONS
+	if [[ "$ULFS_PKG_DOCUMENTATION" == "YES" ]]
+	then
+	    echo decission: building documenetation
+	else
+	    echo decission: skiping documenetation
+	fi
+
+	if [[ "$ULFS_PKG_STATIC" == "YES" ]]
+	then
+	    echo decission: building static
+	else
+	    echo decission: skiping static
+	fi
+
+
+
     exit
 fi
 
