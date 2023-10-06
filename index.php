@@ -66,7 +66,7 @@ echo $dom->saveXML();
 exit;
 }
 echo "<h2>Commands list</h2>";
-echo "Please select release to get commands list: ".join ($releases,', ');
+echo "Please select release to get commands list: ".strjoin ($releases,', ');
 
 echo "<h2>Assistant installation</h2>";
 echo "<ol>";
@@ -133,7 +133,7 @@ EOL;
 
 
 }else{
-echo "Current releases: ".join ($releases,', ');
+echo "Current releases: ".strjoin ($releases,', ');
 
 //----
 
@@ -188,7 +188,7 @@ $pkgs[]="<tr><td><a href=".dirname($_SERVER['SCRIPT_NAME'])."/$release/".$v['nam
 }
 
 echo "<h2>Packages(".count($x).")</h2>";
-echo "Available packages: <table>".join ($pkgs)."</table>";
+echo "Available packages: <table>".strjoin ($pkgs)."</table>";
 
 }
 
