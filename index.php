@@ -113,7 +113,7 @@ echo "<ol>
 <li><a href=\"api.html\">Application Programming interface (API)</a>
 </ol>";
 */
-
+/*
 echo  <<<EOL
 <h3>Keep this service working</h3>
 <p>We rent a physical servers in order to host our services. We need money to keep they working.</p> 
@@ -127,7 +127,7 @@ echo  <<<EOL
 </ul>
 </p>
 EOL;
-
+*/
 
 
 
