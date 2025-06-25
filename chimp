@@ -97,7 +97,13 @@ then
 	echo "Error: Package name is not defined! Package installation aborted!"
 	exit
     fi
-    wget --no-check-certificate $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/install -O - | bash
+
+	if [[ "$ULFS_DOWNLOAD_APP" == "curl" ]]; then
+           curl  $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/install  -k | bash
+	else
+	   wget --no-check-certificate $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/install -O - | bash
+	fi
+
     exit
 fi
 
@@ -113,7 +119,13 @@ then
         echo "Error: Package name is not defined! Package installation aborted!"
         exit
     fi
-    wget --no-check-certificate $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/install -O - 
+
+        if [[ "$ULFS_DOWNLOAD_APP" == "curl" ]]; then
+           curl  $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/install  -k
+        else
+	   wget --no-check-certificate $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/install -O -
+	fi
+
     exit
 fi
 
@@ -127,7 +139,12 @@ fi
 #List available packages 
 if [ "$1" == "available_packages" ];
 then 
-wget --no-check-certificate $UMVIRT_PACKAGES_URL/text/$UMVIRT_RELEASE/ -O -
+
+        if [[ "$ULFS_DOWNLOAD_APP" == "curl" ]]; then
+           curl $UMVIRT_PACKAGES_URL/text/$UMVIRT_RELEASE/ -k
+        else
+	   wget --no-check-certificate $UMVIRT_PACKAGES_URL/text/$UMVIRT_RELEASE/ -O -
+	fi
 exit
 fi 
 
@@ -136,7 +153,13 @@ fi
 
 
 #Other command
-COMMAND="wget -q  --no-check-certificate $UMVIRT_ASSISTANT_URL/$UMVIRT_RELEASE/$1/view -O - | bash"
+
+        if [[ "$ULFS_DOWNLOAD_APP" == "curl" ]]; then
+           COMMAND="curl -s $UMVIRT_ASSISTANT_URL/$UMVIRT_RELEASE/$1/view -k | bash"
+        else
+	   COMMAND="wget -q  --no-check-certificate $UMVIRT_ASSISTANT_URL/$UMVIRT_RELEASE/$1/view -O - | bash"
+	fi
+
 echo "Running command:"
 echo $COMMAND
 echo ""
