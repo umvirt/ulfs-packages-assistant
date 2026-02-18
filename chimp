@@ -148,6 +148,15 @@ then
 exit
 fi 
 
+#List packages without installed files
+if [ "$1" == "zero_packages" ];
+then
+(
+cd /var/log/ulfs-packages
+wc -l */files.txt | grep " 0" | awk '{print $2;}' | awk -F / '{print $1;}'
+)
+exit
+fi
 
 
 
