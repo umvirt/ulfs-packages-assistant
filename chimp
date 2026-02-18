@@ -14,7 +14,7 @@ ULFS_CONFIG_FILE=/etc/ulfs-packages/config
 #override values
 if [ -f $ULFS_CONFIG_FILE ]
 then
-echo loading config file
+#echo loading config file
 . $ULFS_CONFIG_FILE
 fi
 
