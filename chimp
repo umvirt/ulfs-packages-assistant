@@ -99,9 +99,9 @@ then
     fi
 
 	if [[ "$ULFS_DOWNLOAD_APP" == "curl" ]]; then
-           curl  $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/install  -k | bash
+           curl  $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/installwithchimp  -k | bash
 	else
-	   wget --no-check-certificate $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/install -O - | bash
+	   wget --no-check-certificate $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/installwithchimp -O - | bash
 	fi
 
     exit
@@ -121,9 +121,9 @@ then
     fi
 
         if [[ "$ULFS_DOWNLOAD_APP" == "curl" ]]; then
-           curl  $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/install  -k
+           curl  $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/installwithchimp  -k
         else
-	   wget --no-check-certificate $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/install -O -
+	   wget --no-check-certificate $UMVIRT_PACKAGES_URL/$UMVIRT_RELEASE/$2/installwithchimp -O -
 	fi
 
     exit
