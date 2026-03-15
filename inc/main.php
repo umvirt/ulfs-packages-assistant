@@ -1,13 +1,21 @@
 <?php
-ini_set('display_errors',1);
-ini_set('error_reporting',E_ALL);
-
 DEFINE('APPDIR',dirname(dirname(__file__)).'/');
 DEFINE('INCDIR',APPDIR.'/inc/');
 //echo APPDIR;exit;
 include INCDIR."config.php";
-include INCDIR."db.php";
-$db=new db_connection($db_config);
+include INCDIR."classes/DatabaseConnection.php";
+
+
+//if debugging is needed
+if(@$config['debug'])
+{
+    //override PHP settings
+    ini_set('display_errors',1);
+    ini_set('error_reporting',E_ALL);
+}
+
+//init database driver
+$db=new DatabaseConnection($db_config);
 
 //version safe join function
 function strjoin($array, $delimeter=""){
